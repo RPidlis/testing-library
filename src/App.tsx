@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {FC, useState} from 'react';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [text, setText] = useState('')
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setText(event.target.value)
+    }
+    return (
+        <div>
+            <CustomInput value={text} onChange={handleChange}>
+                Input:
+            </CustomInput>
+            <p>You typed:{text ?? '...'}</p>
+        </div>
+    );
 }
 
 export default App;
+
+type PropsType = {
+    children: React.ReactNode;
+    value: string;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>)=> void;
+};
+
+const CustomInput: FC<PropsType> = ({children, value, onChange}) => {
+    return (
+        <div>
+            <label htmlFor="search">{children}</label>
+            <input placeholder="Example" id="search" type="text" value={value} onChange={onChange}/>
+        </div>
+    )
+}
