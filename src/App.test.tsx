@@ -19,12 +19,14 @@ describe('When everything is OK', () => {
     });
 
     test('should select the children that is being passed to the CustomInput', () => {
-        screen.getByText(/input/i);
+        screen.getAllByText(/input/i);
     });
 
     test('should select the input element by role', () => {
-        const input = screen.getByRole('textbox');
-        expect(input).toBeInTheDocument()
+        const input = screen.getAllByRole('textbox');
+        expect(input[0]).toBeInTheDocument();
+        expect(input[1]).toBeInTheDocument();
+        expect(input.length).toEqual(2);
     });
 
     test('should select a label element by its text', () => {
@@ -33,8 +35,8 @@ describe('When everything is OK', () => {
     });
 
     test('should select a input element by placeholder text', () => {
-        const input = screen.getByPlaceholderText('Example');
-        expect(input).toBeInTheDocument();
+        const input = screen.getAllByPlaceholderText('Example');
+        expect(input[0]).toBeInTheDocument();
     });
 
     test('should not find the role "whatever" in our component', () => {
