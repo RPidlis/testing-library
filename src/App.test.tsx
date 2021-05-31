@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import {fireEvent, render, screen, waitFor} from '@testing-library/react';
 import { mocked } from "ts-jest/utils";
 import React from 'react';
 
@@ -25,8 +25,7 @@ describe('When everything is OK', () => {
     test('should select the input element by role', () => {
         const input = screen.getAllByRole('textbox');
         expect(input[0]).toBeInTheDocument();
-        expect(input[1]).toBeInTheDocument();
-        expect(input.length).toEqual(2);
+        expect(input.length).toEqual(1);
     });
 
     test('should select a label element by its text', () => {
@@ -64,3 +63,13 @@ describe('when the component fetches the user successfully', () => {
     });
 });
 
+describe('When the user enters some text in the input element', () => {
+    test('should display the text in the screen', async () => {
+        render(<App/>);
+        await waitFor(() => expect(mockGetUser).toHaveBeenCalled());
+        expect(screen.getByText(/You typed:.../i))
+        fireEvent.change(screen.getByRole('textbox'), {target: {value:'davidH'}});
+
+        expect(screen.getByText(/You typed:davidH/i))
+    });
+});
