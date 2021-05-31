@@ -50,6 +50,15 @@ describe('when the component fetches the user successfully', () => {
     test('should call getUser once', async () => {
         render(<App/>);
         await waitFor(() => expect(mockGetUser).toHaveBeenCalledTimes(1));
+    });
 
+    test('should render the  username passed', async () => {
+        const name = 'Jordan'
+        mockGetUser.mockResolvedValueOnce({ id: '1', name } );
+        render(<App/>);
+        expect(screen.queryByText(/Username/i)).toBeNull();
+        expect(await screen.findByText(/username/i)).toBeInTheDocument();
+        expect(await screen.findByText(/name/)).toBeInTheDocument();
     });
 });
+
