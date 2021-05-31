@@ -1,8 +1,9 @@
-import React, { FC, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
-import './App.css';
+import {CustomInput} from "./CustomInput";
 
 import { getUser, User } from "./get-user";
+import './App.css';
 
 
 const App = () => {
@@ -17,7 +18,7 @@ const App = () => {
         fetchUser();
     }, []);
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setText(event.target.value)
     };
     return (
@@ -32,18 +33,3 @@ const App = () => {
 };
 
 export default App;
-
-type PropsType = {
-    children: React.ReactNode;
-    value: string;
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-};
-
-const CustomInput: FC<PropsType> = ({children, value, onChange}) => {
-    return (
-        <div>
-            <label htmlFor="search">{children}</label>
-            <input placeholder="Example" id="search" type="text" value={value} onChange={onChange}/>
-        </div>
-    )
-}
