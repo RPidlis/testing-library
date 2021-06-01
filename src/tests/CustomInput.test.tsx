@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from "@testing-library/user-event";
 import React from 'react';
 
-import { CustomInput } from "./CustomInput";
+import { CustomInput } from "../components/CustomInput";
 
 describe('When everything is OK', () => {
     test('should call the onChange callback handler when using fireEvent func', () => {

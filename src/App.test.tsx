@@ -1,12 +1,12 @@
-import {fireEvent, render, screen, waitFor} from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { mocked } from "ts-jest/utils";
 import React from 'react';
 
 import App from './App';
-import { getUser } from "./get-user";
+import { getUser } from "./api/get-user";
 import userEvent from "@testing-library/user-event";
 
-jest.mock('./get-user');
+jest.mock('./api/get-user');
 const mockGetUser = mocked(getUser, true);
 
 describe('When everything is OK', () => {

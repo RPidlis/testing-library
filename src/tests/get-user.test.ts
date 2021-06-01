@@ -1,4 +1,4 @@
-import { getUser } from "./get-user";
+import { getUser } from "../api/get-user";
 
 describe('when everything is ok', () => {
     test('should return response', async () => {

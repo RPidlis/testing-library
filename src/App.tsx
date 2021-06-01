@@ -1,8 +1,8 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 
-import {CustomInput} from "./CustomInput";
+import {CustomInput} from "./components/CustomInput";
 
-import { getUser, User } from "./get-user";
+import { getUser, User } from "./api/get-user";
 import './App.css';
 
 
